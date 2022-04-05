@@ -8,22 +8,26 @@ function Post() {
     const { user, moment, title, text, likes, comments } = postData;
 
     // GET REQUEST -> POST
-    
+
     const [listComments, setListComments] = useState(
         [...comments[Math.floor(Math.random() * 3)]]
     )
     const [liked, setLiked] = useState(false);
-    const [likesNumber, setLikes] = useState(likes);
+    const [likesNumber, setLikes] = useState(likes ? likes : Math.floor(Math.random() * 50 * 10));
     const [commentInput, setCommentInput] = useState({
         inputName: "",
         inputComment: ""
     });
 
+    function randomNumber() {
+        return Math.floor(Math.random() * 100 + 1);
+    }
+
     function handleClick() {
-        if(!liked){
-            setLikes(likes + 1);
-        }else{
-            setLikes(likes - 1);
+        if (!liked) {
+            setLikes(likesNumber + 1);
+        } else {
+            setLikes(likesNumber - 1);
         }
         setLiked(value => {
             return !value
@@ -31,35 +35,46 @@ function Post() {
     }
 
     function newComment() {
+        if (commentInput.inputName.length > 0 && commentInput.inputComment.length > 0) {
 
-        setListComments(
-            currentComments => {
-                return (
-                    [
-                        {
-                            id: listComments.length + 1,
-                            user: commentInput.inputName,
-                            moment: "just now",
-                            text: commentInput.inputComment,
-                            likes: 0
-                        },
-                        ...currentComments
-                    ]
-                );
-            }
-        );
 
-        setCommentInput({
-            inputName: "",
-            inputComment: ""
-        })
-        document.getElementById("input-name").value = ""
-        document.getElementById("input-comment").value = ""
+            setListComments(
+                currentComments => {
+                    return (
+                        [
+                            {
+                                id: listComments.length + 1,
+                                user: commentInput.inputName,
+                                moment: "agora mesmo",
+                                text: commentInput.inputComment,
+                                likes: 0
+                            },
+                            ...currentComments
+                        ]
+                    );
+                }
+            );
+
+            setCommentInput({
+                inputName: "",
+                inputComment: ""
+            })
+            document.getElementById("input-name").value = ""
+            document.getElementById("input-comment").value = ""
+        }
 
     }
 
     function updateInputCommentDatas(event) {
         const { name, value } = event.target;
+
+        if (value.length > 25 && name === "inputName") {
+            document.getElementById("input-name").value = value.slice(0, 25);
+        }
+        if (value.length > 80 && name === "inputComment") {
+            document.getElementById("input-comment").value = value.slice(0, 80);
+        }
+
         setCommentInput(currentValues => {
             return ({
                 ...currentValues,
@@ -91,36 +106,43 @@ function Post() {
 
                 </div>
             </div>
-            <div className="add-comment">
+            <div className="add-comment" onKeyPress={event => event.key === "Enter" ? newComment() : null}>
                 <form>
                     <input onChange={updateInputCommentDatas} type="text" id="input-name" name="inputName" placeholder="Usuário" />
                     <input onChange={updateInputCommentDatas} type="text" id="input-comment" name="inputComment" placeholder="Adicione um comentário..." />
                 </form>
                 <button
                     onClick={newComment}
+                    onKeyDownCapture
                     className="btn-comment"
                     disabled={
                         commentInput.inputName.length === 0
-                        || commentInput.inputComment.length === 0 
-                    } 
+                        || commentInput.inputComment.length === 0
+                    }
                     style={
                         {
-                            cursor:commentInput.inputName.length === 0
-                            || commentInput.inputComment.length === 0 ?
-                            "no-drop" : "pointer",
-                            backgroundColor:commentInput.inputName.length === 0
-                            || commentInput.inputComment.length === 0 ?
-                            "#0074b72c" : "#0075B7",
+                            cursor: commentInput.inputName.length === 0
+                                || commentInput.inputComment.length === 0 ?
+                                "no-drop" : "pointer",
+                            backgroundColor: commentInput.inputName.length === 0
+                                || commentInput.inputComment.length === 0 ?
+                                "#0074b72c" : "#0075B7",
                         }
-                    } 
-                    >
+                    }
+                >
                     Comentar
                 </button>
 
             </div>
             <div className="comments">
                 {listComments.map(comment =>
-                    <Comment key={comment.id} user={comment.user} moment={comment.moment} text={comment.text} likes={comment.likes} />
+                    <Comment
+                        key={comment.id}
+                        user={comment.user}
+                        moment={comment.moment}
+                        text={comment.text}
+                        likes={comment.likes || comment.likes === 0 ? comment.likes : randomNumber}
+                    />
                 )}
             </div>
         </>

@@ -6,6 +6,10 @@
     --primaryColor: #0075B7;
 }
 
+p{
+    width: 100%;
+}
+
 .arrow-up{
     display: flex;
     align-items: center;
@@ -49,6 +53,7 @@ footer{
 .text{ line-height: 23px }
 
 .top{
+    
     display: flex;
     justify-content: space-between;
     color: var(--primaryColor);

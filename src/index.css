@@ -20,9 +20,7 @@
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.568);
 }
 
-.arrow-up a img{
-    margin-bottom: -4px;
-}
+.arrow-up a img{ margin-bottom: -4px }
 
 header{
     display: flex;
@@ -42,6 +40,8 @@ header{
     margin: 20px auto;
 }
 
+.text{ line-height: 23px }
+
 .top{
     display: flex;
     justify-content: space-between;
@@ -49,9 +49,7 @@ header{
     margin-bottom: 20px;
 }
 
-.user{
-    font-weight: lighter;
-}
+.user{ font-weight: lighter }
 
 .moment{
     font-weight: lighter;
@@ -59,9 +57,7 @@ header{
     font-size: 20px;
 }
 
-.title{
-    margin-bottom: 5px;
-}
+.title{ margin-bottom: 5px }
 
 .likes{
     margin-top: 15px;
@@ -82,13 +78,14 @@ header{
 }
 
 .add-comment form{
+    width: 30%;
     display: flex;
     flex-direction: column;
 }
 
 .add-comment form input{
     height: 40px;
-    width: 20rem;
+    /*width: 20rem;*/
     font-size: 16px;
     padding-left: 5px;
     outline: none;
@@ -97,13 +94,7 @@ header{
     
 }
 
-input[type="text"]:nth-child(1){
-    margin-bottom: 5px;
-}
-
-input[type="text"]:nth-child(2){
-    
-}
+input[type="text"]:nth-child(1){ margin-bottom: 5px }
 
 .btn-comment{
     height: 50px;
@@ -114,7 +105,7 @@ input[type="text"]:nth-child(2){
     color: whitesmoke;
     font-size: 17px;
     font-weight: bolder;
-    
+    transition: 400ms;
 }
 
 .comments{
@@ -128,4 +119,25 @@ input[type="text"]:nth-child(2){
     padding: 10px;
     margin: 20px 0;
     width: 80%;
+}
+
+::-webkit-scrollbar{ width: 10px }
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--primaryColor);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover{ background-color: #0074b788 }
+
+@media (max-width:500px){
+    .btn-comment{ margin: 35px 0 0 10px }
+    .add-comment form{ width: 50% }
+}
+
+@media (max-width:500px){
+    .post, .comments{ width: 95% }
+    .add-comment{ margin-left: 5% }
+    .add-comment form{ width: 57% }
+    .comment{ width: 100% }
 }

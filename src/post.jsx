@@ -9,7 +9,7 @@ function Post() {
 
     // GET REQUEST -> POST
     const [listComments, setListComments] = useState(
-        [...comments]
+        [...comments[Math.floor(Math.random() * 3)]]
     )
     const [liked, setLiked] = useState(false);
     const [likesNumber, setLikes] = useState(likes);

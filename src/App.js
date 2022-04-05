@@ -1,16 +1,17 @@
+import ArrowUp from "./arrowUp";
+import Footer from "./footer";
 import Header from "./header"
 import Post from "./post"
-import ArrowUp from "./assets/arrow-upward.svg"
+
 
 
 function App() {
   return (
     <>
+      <ArrowUp />
       <Header />
       <Post />
-      <div className="arrow-up">
-        <a href="#"><img src={ArrowUp} alt="arrow upward"/></a>
-      </div>
+      <Footer />
     </>
   );
 }

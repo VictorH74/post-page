@@ -8,6 +8,7 @@ function Post() {
     const { user, moment, title, text, likes, comments } = postData;
 
     // GET REQUEST -> POST
+    
     const [listComments, setListComments] = useState(
         [...comments[Math.floor(Math.random() * 3)]]
     )
@@ -27,8 +28,6 @@ function Post() {
         setLiked(value => {
             return !value
         });
-
-        
     }
 
     function newComment() {

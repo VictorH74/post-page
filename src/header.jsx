@@ -1,16 +1,12 @@
 import React from "react";
 
-
-
-function Header(){
-    return(
+export default function Header() {
+    return (
         <>
-          <header>
-            <h1>VH | Postagens</h1>
-        </header>  
+            <a name="header" href="#header"/>
+            <header>
+                <h1>VH | Postagem</h1>
+            </header>
         </>
-        
     );
 }
-
-export default Header;

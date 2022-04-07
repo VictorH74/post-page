@@ -1,7 +1,7 @@
-import ArrowUp from "./arrowUp";
-import Footer from "./footer";
-import Header from "./header"
-import Post from "./post"
+import ArrowUp from "./ArrowUp";
+import Footer from "./Footer";
+import Header from "./Header"
+import Post from "./Post"
 
 
 

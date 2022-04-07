@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Comment from "./Comment";
+import Comment from "./comment";
 import postData from "./postDatas";
 import LikeIcon from "./assets/like-icon.svg"
 import LikeIconClicked from "./assets/like-icon-clicked.svg"

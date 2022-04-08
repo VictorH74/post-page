@@ -16,21 +16,28 @@ export default function Comment(props) {
         !liked ? setLikes(likes + 1) : setLikes(likes - 1);
     }
 
-    function handleMouseOver(){
+    function handleMouseOver() {
         setIsMouseOver(true);
     }
 
-    function handleMouseOut(){
+    function handleMouseOut() {
         setIsMouseOver(false);
     }
 
-    function deleteComment(){
-        props.clickFunction(props.id);
+    function deleteComment(event) {
+        event.target.parentNode.parentNode.parentNode.parentNode.style.animation = "takeOut 1s both ease-in-out";
+
+        setTimeout(() => {
+            props.clickFunction(props.id);
+        }, 700);
         setIsMouseOver(false);
     }
 
     return (
-        <div className="comment">
+        <div className="comment" 
+            style={{
+                animation: !props.isArtificial ? "newComment ease-in-out 170ms ": ""
+                }}>
             <div className="top">
                 <h2 className="user">{props.user}</h2>
                 <h2 className="moment">{props.moment}</h2>
@@ -44,14 +51,14 @@ export default function Comment(props) {
                         </span>
                     </button>
                     <p>{likes}</p>
-                    {!props.isArtificial?
-                        <button 
-                            onClick={deleteComment} 
+                    {!props.isArtificial ?
+                        <button
+                            onClick={deleteComment}
                             onMouseOver={handleMouseOver}
                             onMouseOut={handleMouseOut}
                             className="delete-btn">
-                            <img src={!isMouseOver ? DeleteIcon: DeleteIconHover} alt="delete icon"></img>
-                            </button>:""}
+                            <img src={!isMouseOver ? DeleteIcon : DeleteIconHover} alt="delete icon"></img>
+                        </button> : ""}
                 </div>
             </div>
         </div>

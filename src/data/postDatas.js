@@ -2,7 +2,7 @@ const postData = {
     user: "Victor Almeida",
     moment: "30 min atrás",
     title: "Mais um projeto!",
-    text: <p>Esse projeto é apenas uma demo de uma seção de postagem, na qual um usuário poderá postar sobre seu dia e outros usuários poderão comentar. <strong>IMPORTANTE: Nenhum famoso conhecido citado nos comentários abaixo fizeram parte desse projeto. Seus nomes foram apenas citados para fins demostrativos.</strong> Os comentários são postados aleatoriamente. Caso atualize a página, há chances de serem outros comentários. <br/> Tenha um bom dia!! 😉</p>,
+    text: "Esse projeto é apenas uma demo de uma seção de postagem, na qual um usuário poderá postar sobre seu dia e outros usuários poderão comentar. <strong>IMPORTANTE: Nenhum famoso conhecido citado nos comentários abaixo fizeram parte desse projeto. Seus nomes foram apenas citados para fins demostrativos.</strong> Os comentários são postados aleatoriamente. Caso atualize a página, há chances de serem outros comentários. <br/> Tenha um bom dia!! 😉",
     //likes: 57,
     comments: [
         [
@@ -59,7 +59,7 @@ const postData = {
                 id: 2,
                 user: "Microondas",
                 moment: "5 min atrás",
-                text: <p>HHHHHMMMMMMMMMM<br/>MMMMMMMMMMMMMMMMMM!!<br/>😳😳😳</p>,
+                text: "HHHHHMMMMMMMMMMMMMMMMMMMMMMMMMMMM!!<br/>😳😳😳",
                 likes: 738, 
                 isArtificial: true
             },

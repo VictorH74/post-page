@@ -40,11 +40,14 @@ const Bottom = styled.div`
 `;
 
 const Inf = styled.h2`
-    &.user{ font-weight: lighter }
+    &.user{ 
+        font-weight: lighter;
+        font-size: 1.4rem;
+     }
     &.moment{
         font-weight: lighter;
         font-style: italic;
-        font-size: 20px;
+        font-size: 1.2rem;
     }
 `;
 

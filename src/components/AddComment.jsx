@@ -74,6 +74,7 @@ export default function AddComment(props) {
         user: "",
         comment: ""
     });
+    const [showEmojiList, setShowEmojies] = useState(false)
 
     function updateInputCommentDatas(event) {
         var { name, value } = event.target;
@@ -111,14 +112,19 @@ export default function AddComment(props) {
             <Form>
                 <input onChange={updateInputCommentDatas} type="text" name="user" value={fields.user} placeholder="Usuário" />
                 <CommentInput>
-                    <input onChange={updateInputCommentDatas} type="text" name="comment" value={fields.comment} placeholder="Adicione um comentário..." />
-                    <EmojieList setFields={setFields} />
+                    <input
+                        onChange={updateInputCommentDatas}
+                        onFocus={() => setShowEmojies(false)}
+                        type="text" name="comment" value={fields.comment}
+                        placeholder="Adicione um comentário..." />
+                    <EmojieList setFields={setFields} show={showEmojiList} setShow={setShowEmojies} />
                 </CommentInput>
-
-
             </Form>
             <CommentBtn
-                onClick={newComment}
+                onClick={() => {
+                    newComment();
+                    setShowEmojies(false)
+                }}
                 disabled={Condition}
                 emptyFields={Condition}
             >
@@ -132,7 +138,6 @@ export default function AddComment(props) {
 const UpdatingPopover = React.forwardRef(
     ({ popper, children, show: _, ...props }, ref) => {
         useEffect(() => {
-            console.log('updating!');
             popper.scheduleUpdate();
         }, [children, popper]);
 
@@ -158,19 +163,18 @@ const EmjsContainer = styled.div`
     border-radius: 10px;
     border: 1px solid var(--primaryColor);
     padding: 10px;
-
-    & div {
-        font-size: 30px;
-        cursor: pointer;
-    }
-
 `;
 
-const Emjs = ({ setFields }) => {
+const Emoji = styled.div`
+    font-size: 30px;
+    cursor: pointer;
+`;
+
+const Emjs = ({ setFields, setShow }) => {
     return (
         <EmjsContainer>
             {emojies.map((emj, index) => (
-                <div key={index}
+                <Emoji key={index}
                     onClick={() => {
                         setFields(prev => {
                             let prevCommentConten = prev.comment;
@@ -178,23 +182,25 @@ const Emjs = ({ setFields }) => {
                                 ...prev,
                                 comment: prevCommentConten + emj
                             }
-                        })
+                        });
                     }}
-                >{emj}</div>
+                >{emj}</Emoji>
             ))}
         </EmjsContainer>
     );
 }
 
-function EmojieList({ setFields }) {
+function EmojieList({ setFields, show, setShow }) {
     const [AddReactionIconHover, setHover] = useState(false);
+
 
     return (
         <OverlayTrigger
-            trigger="click"
+            show={show}
+
             overlay={
                 <UpdatingPopover id="popover-contained">
-                    <Emjs setFields={setFields} />
+                    <Emjs setFields={setFields} setShow={() => setShow(false)} />
                 </UpdatingPopover>
             }
         >
@@ -203,6 +209,7 @@ function EmojieList({ setFields }) {
                     onMouseOver={() => setHover(true)}
                     onMouseOut={() => setHover(false)}
                     color={AddReactionIconHover ? "primary" : "disabled"}
+                    onClick={() => setShow(!show)}
                 />
             </span>
         </OverlayTrigger>

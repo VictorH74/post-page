@@ -2,7 +2,7 @@ const postData = {
     user: "Victor Almeida",
     moment: "30 min atrás",
     title: "Mais um projeto!",
-    text: "Esse projeto é apenas uma demo de uma seção de postagem, na qual um usuário poderá postar sobre seu dia e outros usuários poderão comentar. <strong>IMPORTANTE: Nenhum famoso conhecido citado nos comentários abaixo fizeram parte desse projeto. Seus nomes foram apenas citados para fins demostrativos.</strong> Os comentários são postados aleatoriamente. Caso atualize a página, há chances de serem outros comentários. <br/> Tenha um bom dia!! 😉",
+    text: "Esse projeto é apenas uma demo de uma seção de postagem, na qual um usuário poderá postar sobre seu dia e outros usuários poderão comentar. <strong>IMPORTANTE</strong>: <em>Nenhum famoso conhecido citado nos comentários abaixo fizeram parte desse projeto. Seus nomes foram apenas citados para fins demostrativos.</em> <br/> Os comentários são postados aleatoriamente. Caso atualize a página, há chances de serem outros comentários. <br/> Você também pode formatar o texto usando tags htmls. <strong>Ex.: &lt;strong&gt;, &lt;em&gt;, &lt;i&gt;</strong> <br/> Tenha um bom dia!! 😉",
     //likes: 57,
     comments: [
         [
@@ -59,7 +59,7 @@ const postData = {
                 id: 2,
                 user: "Microondas",
                 moment: "5 min atrás",
-                text: "HHHHHMMMMMMMMMMMMMMMMMMMMMMMMMMMM!!<br/>😳😳😳",
+                text: "HHHHHMMMMMMMMMMM!!<br/>😳😳😳",
                 likes: 738, 
                 isArtificial: true
             },

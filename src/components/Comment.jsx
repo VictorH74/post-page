@@ -18,7 +18,6 @@ const Container = styled.div`
     @media (max-width:500px){
         width: 100%;
     }
-
     @keyframes newComment {
     from{
         transform: translateY(-30%);
@@ -51,11 +50,15 @@ const Bottom = styled.div`
 `;
 
 const Inf = styled.h2`
-    &.user{ font-weight: lighter }
+    &.user{ 
+        font-weight: lighter;
+        font-size: 1.4rem;
+    }
     &.moment{
+        text-align: center;
         font-weight: lighter;
         font-style: italic;
-        font-size: 20px;
+        font-size: 1.2rem;
     }
 `;
 
@@ -72,23 +75,18 @@ export default function Comment({ data, clickFunction }) {
     const [likes, setLikes] = useState(data.likes);
     const [isMouseOver, setIsMouseOver] = useState(false);
 
-    function likeButtonClicked() {
+    const likeButtonClicked = () => {
         setLiked(value => {
             return !value
         });
         !liked ? setLikes(likes + 1) : setLikes(likes - 1);
     }
 
-    function handleMouseOver() {
-        setIsMouseOver(true);
-    }
+    const handleMouseOver = () => setIsMouseOver(true);
+    const handleMouseOut = () => setIsMouseOver(false);
 
-    function handleMouseOut() {
-        setIsMouseOver(false);
-    }
-
-    function deleteComment(event) {
-        event.target.parentNode.parentNode.parentNode.style.animation = "takeOut 1s both ease-in-out";
+    const deleteComment = e => {
+        e.target.parentNode.parentNode.parentNode.style.animation = "takeOut 1s both ease-in-out";
 
         setTimeout(() => {
             clickFunction(data.id);
@@ -97,9 +95,7 @@ export default function Comment({ data, clickFunction }) {
     }
 
     return (
-        <Container
-            isArtificial={!data.isArtificial}
-        >
+        <Container isArtificial={!data.isArtificial} >
             <Top >
                 <Inf className="user"> {data.user} </Inf>
                 <Inf className="moment" > {data.moment} </Inf>

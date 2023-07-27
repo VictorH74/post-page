@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const Container = styled.header`
+export const Container = styled.header`
     display: flex;
     align-items: center;
     background-color: var(--primaryColor);
@@ -10,11 +9,3 @@ const Container = styled.header`
     padding: 5px;
     color: whitesmoke;
 `;
-
-export default function Header() {
-    return (
-        <Container>
-            <h1>VH | Postagem</h1>
-        </Container>
-    );
-}
